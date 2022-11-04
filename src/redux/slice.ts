@@ -1,16 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./state";
 import { IState } from "../interfaces";
-import { ELangs } from "../enums";
+import { EMenuTypes } from "../enums";
 
 export const slice = createSlice({
   name: "reducer",
   initialState,
   reducers: {
-    toggleGeneralMenu: (state: IState) => {
-      state.isGeneralMenuOpen = !state.isGeneralMenuOpen;
+    toggleMenu: (state: IState, action: PayloadAction<EMenuTypes>) => {
+      (Object.keys(state.isMenuOpened) as typeof EMenuTypes[keyof typeof EMenuTypes][]).forEach(
+        (key: EMenuTypes) => {
+          if (key === action.payload) {
+            state.isMenuOpened[key] = !state.isMenuOpened[key];
+          } else {
+            state.isMenuOpened[key] = false;
+          }
+        }
+      );
+    },
+    closeMenus: (state: IState) => {
+      state.isMenuOpened[EMenuTypes.GENERAL] = false;
+      state.isMenuOpened[EMenuTypes.LANG] = false;
     },
   },
 });
 
-export const { toggleGeneralMenu } = slice.actions;
+export const { toggleMenu, closeMenus } = slice.actions;

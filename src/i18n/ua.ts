@@ -6,10 +6,10 @@ const i18nRu = {
   menu: {
     general: {
       menu: "Меню",
-      aboutUs: "О нас",
+      aboutUs: "Про нас",
       ourRestaraunt: "Наш ресторан",
-      contacts: "Контакты",
-      reservation: "Бронирование",
+      contacts: "Контакти",
+      reservation: "Резервація",
     },
     lang: {
       en: "en",

@@ -5,11 +5,11 @@ const i18nRu = {
   },
   menu: {
     general: {
-      menu: "Меню",
-      aboutUs: "О нас",
-      ourRestaraunt: "Наш ресторан",
-      contacts: "Контакты",
-      reservation: "Бронирование",
+      menu: "Menü",
+      aboutUs: "Hakkımızda",
+      ourRestaraunt: "Restoranımız",
+      contacts: "Kişiler",
+      reservation: "Rezervasyon",
     },
     lang: {
       en: "en",
