@@ -67,7 +67,7 @@ const Element = styled.ul`
   text-align: center;
   text-transform: uppercase;
   color: #d1c3b1;
-  padding: 15px 0;
+  padding: 0;
   font-size: 18px;
   letter-spacing: 2px;
   border-bottom: 1px solid #484949;
@@ -78,6 +78,7 @@ const Button = styled.button<{ isOpen: boolean }>`
   text-decoration: none;
   display: block;
   width: 100%;
+  padding: 15px 0;
   text-transform: uppercase;
   transform: translateY(${(p) => (p.isOpen ? "0" : "85")}%);
   transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1), opacity 200ms linear;
@@ -87,6 +88,7 @@ const LinkStyled = styled(Link)<{ isOpen: boolean }>`
   color: inherit;
   text-decoration: none;
   display: block;
+  padding: 15px 0;
   transform: translateY(${(p) => (p.isOpen ? "0" : "85")}%);
   transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1), opacity 200ms linear;
 `;

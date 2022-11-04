@@ -31,7 +31,7 @@ const Wrapper = styled.section`
 
 const Container = styled.section`
   position: relative;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 80px);
   width: 100%;
 `;
 
