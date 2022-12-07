@@ -7,4 +7,5 @@ export const initialState: IState = {
     general: false,
     lang: false,
   },
+  menu: [],
 };

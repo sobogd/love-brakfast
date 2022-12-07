@@ -6,4 +6,5 @@ export interface IState {
     [EMenuTypes.GENERAL]: boolean;
     [EMenuTypes.LANG]: boolean;
   };
+  menu: any;
 }

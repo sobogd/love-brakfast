@@ -11,16 +11,21 @@ import { closeMenus } from "../redux/slice";
 import { isMenuOpenedSelector } from "../redux/selectors";
 import { Block, TextBlock, TextLink, Title } from "../styles";
 import { menuSearch } from "../api";
-import { useAppDispatch } from "../redux/store";
+import { useAppDispatch, useAppSelector } from "../redux/store";
 
-const Contacts: React.FC = () => {
+const Positions: React.FC = () => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const isMenuOpened = useSelector(isMenuOpenedSelector);
   const { i18n } = useTranslation();
   const { language } = i18n;
   const state = useSelector((s) => s);
-  console.log("AAA", state);
+  const menu = useAppSelector((s) => s.menu);
+  console.log("AAA", menu);
+
+  React.useEffect(() => {
+    dispatch(menuSearch());
+  }, []);
 
   React.useEffect(() => {
     dispatch(closeMenus());
@@ -31,22 +36,28 @@ const Contacts: React.FC = () => {
   };
 
   return (
-    <Block>
-      <Title>
-        Контакты
-        <img src="/title.svg" alt="Контакты" />
-      </Title>
-      <TextBlock>
-        Foça, Barış Manço Blv. 61 A<br /> Turkey, Fethiye/Muğla
-      </TextBlock>
-      <TextLink target="__blank" href="https://goo.gl/maps/kzmuRydMTmQfYjTQA">
-        Google Maps
-      </TextLink>
-      <TextLink href="whatsapp:contact=+905347908970">WhatsApp</TextLink>
-      <TextLink href="mailto:lovebreakfast.cafe@gmail.com">lovebreakfast.cafe@gmail.com</TextLink>
-      <TextLink href="tel:+905347908970">+90 (534) 790-89-70</TextLink>
-    </Block>
+    !!menu.length &&
+    menu.map((m: any) => (
+      <Block>
+        <Title>
+          {m.name}
+          <img src="/title.svg" alt="Контакты" />
+        </Title>
+        <TextBlock>
+          <ul>
+            {!!m.positions.length &&
+              m.positions.map((p: any) => (
+                <li>
+                  {p.name}
+                  {!!p.description && <text>{p.description}</text>}
+                  <strong>{p.price} TL</strong>
+                </li>
+              ))}
+          </ul>
+        </TextBlock>
+      </Block>
+    ))
   );
 };
 
-export default Contacts;
+export default Positions;

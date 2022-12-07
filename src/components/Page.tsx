@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 import { closeMenus } from "../redux/slice";
 import { isMenuOpenedSelector } from "../redux/selectors";
 import Contacts from "./Contacts";
+import Positions from "./Positions";
 
 enum ECornerPosition {
   TOP_LEFT = "TOP_LEFT",
@@ -129,6 +130,7 @@ const Page: React.FC = () => {
             <Corner position={ECornerPosition.BOTTOM_LEFT} src="/corner.svg" />
             <Corner position={ECornerPosition.BOTTOM_RIGHT} src="/corner.svg" />
             <Contacts />
+            <Positions />
           </Scroll>
         </Container>
       </Wrapper>

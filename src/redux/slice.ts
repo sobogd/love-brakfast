@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./state";
 import { IState } from "../interfaces";
 import { EMenuTypes } from "../enums";
+import { menuSearch } from "../api";
 
 export const slice = createSlice({
   name: "reducer",
@@ -22,6 +23,13 @@ export const slice = createSlice({
       state.isMenuOpened[EMenuTypes.GENERAL] = false;
       state.isMenuOpened[EMenuTypes.LANG] = false;
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(menuSearch.pending, (state) => {});
+    builder.addCase(menuSearch.rejected, (state) => {});
+    builder.addCase(menuSearch.fulfilled, (state, action) => {
+      state.menu = action.payload;
+    });
   },
 });
 
