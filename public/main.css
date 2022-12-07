@@ -1,7 +1,11 @@
 /* Font */
 @font-face {
-  font-family: "Montserrat";
-  src: local("Montserrat"), url("/font.ttf");
+  font-family: "Font";
+  src: local("Font"), url("/font.ttf");
+}
+@font-face {
+  font-family: "Font Bold";
+  src: local("Font Bold"), url("/font-bold.ttf");
 }
 
 /* Box sizing rules */
@@ -10,13 +14,13 @@
 *::after {
   box-sizing: border-box;
   transition: 0.7s;
-  font-family: "Montserrat";
+  font-family: "Font";
 }
 
 body,
 html {
-  height: 100vh;
-  width: 100vh;
+  height: 100%;
+  width: 100%;
   position: fixed;
 }
 

@@ -12,37 +12,28 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   flex-direction: row;
   height: 70px;
-  padding: 0 10px;
-  margin-top: -10px;
+  padding: 20px;
+  background: #ffffff8c;
 `;
 
 const LangMenuButton = styled.div`
-  width: 40px;
-  color: #7f674a;
+  text-transform: uppercase;
 `;
 
-const CompanyTitle = styled.div`
-  font-size: 15px;
-  color: #7f674a;
-  line-height: 25px;
-  span {
-    font-size: 25px;
-    margin-right: 5px;
-  }
-`;
+const Logo = styled.img``;
 
 const MenuButtonContainer = styled.div<IMenuBUttonContainer>`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   position: relative;
 
   span {
     display: block;
-    background: #d1c3b1;
-    height: 1px;
+    background: #373737;
+    height: 0.4px;
     border: 0;
     position: absolute;
-    width: ${(p) => (p.isOpen ? "27" : "35")}px;
+    width: ${(p) => (p.isOpen ? "27" : "25")}px;
     margin: auto;
     top: 0;
     left: 0;
@@ -59,7 +50,7 @@ const MenuButtonContainer = styled.div<IMenuBUttonContainer>`
             right: 0;
           `
           : `
-            top: 20px;
+            top: 12px;
         `}
     }
 
@@ -84,7 +75,7 @@ const MenuButtonContainer = styled.div<IMenuBUttonContainer>`
             right: 0;
           `
           : `
-            bottom: 20px;
+            bottom: 12px;
         `}
     }
   }
@@ -108,10 +99,7 @@ const Header: React.FC = () => {
     <>
       <HeaderContainer>
         <LangMenuButton onClick={handleClickMenuButton(EMenuTypes.LANG)}>{i18n.language}</LangMenuButton>
-        <CompanyTitle>
-          <span>{t("title.first")}</span>
-          {t("title.second")}
-        </CompanyTitle>
+        <Logo src="/logo.svg" />
         <MenuButtonContainer
           onClick={handleClickMenuButton(EMenuTypes.GENERAL)}
           isOpen={isMenuOpened[EMenuTypes.GENERAL]}
