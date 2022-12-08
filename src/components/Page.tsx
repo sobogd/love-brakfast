@@ -11,6 +11,7 @@ import { closeMenus } from "../redux/slice";
 import { isMenuOpenedSelector } from "../redux/selectors";
 import Contacts from "./Contacts";
 import Positions from "./Positions";
+import Home from "./Home";
 
 enum ECornerPosition {
   TOP_LEFT = "TOP_LEFT",
@@ -51,6 +52,15 @@ const Scroll = styled.section`
   overflow-x: hidden;
   overflow-y: auto;
   padding: 40px;
+`;
+
+const ScrollContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  position: relative;
 `;
 
 const Corner = styled.img<{ position: ECornerPosition }>`
@@ -94,7 +104,7 @@ const Page: React.FC = () => {
   const isMenuOpened = useSelector(isMenuOpenedSelector);
   const { i18n } = useTranslation();
   const { language } = i18n;
-  const state = useSelector((s) => s);
+  const state: any = useSelector((s) => s);
   console.log("AAA", state);
 
   React.useEffect(() => {}, []);
@@ -130,8 +140,11 @@ const Page: React.FC = () => {
             <Corner position={ECornerPosition.TOP_RIGHT} src="/corner.svg" />
             <Corner position={ECornerPosition.BOTTOM_LEFT} src="/corner.svg" />
             <Corner position={ECornerPosition.BOTTOM_RIGHT} src="/corner.svg" />
-            <Contacts />
-            <Positions />
+            <ScrollContainer>
+              {state.page === "home" && <Home />}
+              {state.page === "contacts" && <Contacts />}
+              {state.page === "menu" && <Positions />}
+            </ScrollContainer>
           </Scroll>
         </Container>
       </Wrapper>

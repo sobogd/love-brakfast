@@ -6,7 +6,7 @@ import i18nUa from "./ua";
 import i18nTr from "./tr";
 
 const i18n = createInstance({
-  fallbackLng: "en",
+  fallbackLng: "ru",
   resources: {
     ru: {
       translation: i18nRu,

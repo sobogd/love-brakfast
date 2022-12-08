@@ -5,7 +5,7 @@ import { EMenuTypes } from "../enums";
 import { MENU_BACKGROUNDS } from "../consts";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { toggleMenu } from "../redux/slice";
+import { setPage, toggleMenu } from "../redux/slice";
 
 const Container = styled.div<{ isOpen: boolean }>`
   position: absolute;
@@ -84,7 +84,7 @@ const Button = styled.button<{ isOpen: boolean }>`
   transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1), opacity 200ms linear;
 `;
 
-const LinkStyled = styled(Link)<{ isOpen: boolean }>`
+const LinkStyled = styled.a<{ isOpen: boolean }>`
   color: inherit;
   text-decoration: none;
   display: block;
@@ -123,7 +123,7 @@ const Menu: React.FC<IMenuProps> = ({ items, isOpen, type }) => {
         {items.map((item) => (
           <Element>
             {!!item.link && (
-              <LinkStyled isOpen={isOpen} to={item.link}>
+              <LinkStyled isOpen={isOpen} onClick={() => dispatch(setPage(item.link))}>
                 {t(item.name)}
               </LinkStyled>
             )}

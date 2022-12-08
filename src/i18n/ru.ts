@@ -5,6 +5,7 @@ const i18nRu = {
   },
   menu: {
     general: {
+      home: "Главная",
       menu: "Меню",
       aboutUs: "О нас",
       ourRestaraunt: "Наш ресторан",

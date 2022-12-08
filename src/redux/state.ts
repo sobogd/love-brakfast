@@ -8,4 +8,5 @@ export const initialState: IState = {
     lang: false,
   },
   menu: [],
+  page: "home",
 };

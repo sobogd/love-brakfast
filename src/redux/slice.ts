@@ -23,6 +23,11 @@ export const slice = createSlice({
       state.isMenuOpened[EMenuTypes.GENERAL] = false;
       state.isMenuOpened[EMenuTypes.LANG] = false;
     },
+    setPage: (state: IState, action: PayloadAction<any>) => {
+      state.page = action.payload;
+      state.isMenuOpened[EMenuTypes.GENERAL] = false;
+      state.isMenuOpened[EMenuTypes.LANG] = false;
+    },
   },
   extraReducers(builder) {
     builder.addCase(menuSearch.pending, (state) => {});
@@ -33,4 +38,4 @@ export const slice = createSlice({
   },
 });
 
-export const { toggleMenu, closeMenus } = slice.actions;
+export const { toggleMenu, closeMenus, setPage } = slice.actions;
