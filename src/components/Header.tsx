@@ -30,7 +30,7 @@ const MenuButtonContainer = styled.div<IMenuBUttonContainer>`
   span {
     display: block;
     background: #373737;
-    height: 0.4px;
+    height: 1.4px;
     border: 0;
     position: absolute;
     width: ${(p) => (p.isOpen ? "27" : "25")}px;

@@ -20,8 +20,7 @@ enum ECornerPosition {
 }
 
 const Background = styled.section`
-  background: url(/back.jpeg) repeat;
-  background-size: 100%;
+  background: #363636;
   position: fixed;
   top: 0;
   left: 0;
@@ -36,6 +35,8 @@ const Wrapper = styled.section`
   width: 100%;
   max-width: 768px;
   height: 100%;
+  background: url(/back.jpeg) repeat;
+  background-size: 100%;
 `;
 
 const Container = styled.section`
