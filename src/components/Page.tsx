@@ -12,6 +12,7 @@ import { isMenuOpenedSelector } from "../redux/selectors";
 import Contacts from "./Contacts";
 import Positions from "./Positions";
 import Home from "./Home";
+import Reservation from "./Reservation";
 
 enum ECornerPosition {
   TOP_LEFT = "TOP_LEFT",
@@ -144,6 +145,7 @@ const Page: React.FC = () => {
               {state.page === "home" && <Home />}
               {state.page === "contacts" && <Contacts />}
               {state.page === "menu" && <Positions />}
+              {/* {state.page === "reservation" && <Reservation />} */}
             </ScrollContainer>
           </Scroll>
         </Container>

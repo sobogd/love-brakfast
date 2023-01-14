@@ -42,15 +42,14 @@ const Slider = styled.div`
         left: 0;
         right: 0;
         margin: auto;
-        background: #ffffff4d;
         color: #e9e9e9;
         width: calc(100% - 120px);
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 10px 80px;
-        bottom: calc(50% - 75px);
+        padding: 10px 40px;
+        bottom: calc(10% - 75px);
         width: 100%;
         height: 150px;
         text-shadow: 1px 1px 1px #666666;
@@ -71,7 +70,7 @@ const Control = styled.span<{ side: string }>`
   height: 150px;
   :hover {
     ::before {
-      border-color: #ffffffac;
+      border-color: #ffffffbf;
     }
   }
   ::before {
@@ -83,7 +82,7 @@ const Control = styled.span<{ side: string }>`
     top: 0;
     bottom: 0;
     left: -10px;
-    border: 2px solid #ffffff4f;
+    border: 2.5px solid #ffffffbf;
     border-bottom: 0;
     border-right: 0;
     transform: rotate(135deg);
@@ -91,49 +90,11 @@ const Control = styled.span<{ side: string }>`
   }
 `;
 
-const slides = [
-  {
-    src: "/slider/slider4.png",
-    title: "Russian salad Oliver",
-    description: "",
-  },
-  {
-    src: "/slider/slider3.png",
-    title: (
-      <>
-        Double espresso + <br />
-        Nelly Peterburgovna
-      </>
-    ),
-    description: "",
-  },
-  {
-    src: "/slider/slider7.png",
-    title: "Mushroom cream soup",
-    description: "",
-  },
-  {
-    src: "/slider/slider2.png",
-    title: "Classic pancakes with sour cream",
-    description: "",
-  },
-  {
-    src: "/slider/slider6.png",
-    title: "Pancakes with cream cheese and salted salmon",
-    description: "",
-  },
-  {
-    src: "/slider/slider5.png",
-    title: "Pumpkin cream soup",
-    description: "",
-  },
-];
-
 const Home: React.FC = () => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const isMenuOpened = useSelector(isMenuOpenedSelector);
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const { language } = i18n;
   const state = useSelector((s) => s);
   const menu = useAppSelector((s) => s.menu);
@@ -149,6 +110,41 @@ const Home: React.FC = () => {
       setLeftPosition(block.getBoundingClientRect().width * -1);
     }
   }, [sliderBlock]);
+
+  const slides = React.useMemo(() => {
+    return [
+      {
+        src: "/slider/slider3.png",
+        title: t("slider.slider1"),
+        description: "",
+      },
+      {
+        src: "/slider/slider9.png",
+        title: t("slider.slider9"),
+        description: "",
+      },
+      {
+        src: "/slider/slider7.png",
+        title: t("slider.slider7"),
+        description: "",
+      },
+      {
+        src: "/slider/slider2.png",
+        title: t("slider.slider2"),
+        description: "",
+      },
+      {
+        src: "/slider/slider6.png",
+        title: t("slider.slider6"),
+        description: "",
+      },
+      {
+        src: "/slider/slider5.png",
+        title: t("slider.slider5"),
+        description: "",
+      },
+    ];
+  }, [language]);
 
   const allWidth = slides.length * width;
   const activeSlideNumber = (Math.abs(leftPosition) * slides.length) / allWidth;
