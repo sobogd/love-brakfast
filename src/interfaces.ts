@@ -6,6 +6,14 @@ export interface IState {
     [EMenuTypes.GENERAL]: boolean;
     [EMenuTypes.LANG]: boolean;
   };
-  menu: any;
+  menu: {
+    id: number;
+    name: string;
+    positions: {
+      id: number;
+      name: string;
+      price: string;
+    }[]
+  }[];
   page: any;
 }

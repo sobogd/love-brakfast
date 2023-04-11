@@ -21,7 +21,6 @@ const Reservation: React.FC = () => {
   const { i18n } = useTranslation();
   const { language } = i18n;
   const state = useSelector((s) => s);
-  console.log("AAA", state);
 
   React.useEffect(() => {
     dispatch(closeMenus());

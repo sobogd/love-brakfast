@@ -111,6 +111,11 @@ const i18nEn = {
     position137: "Mash avocado",
     position138: "Salted salmon",
     position139: "Cream cheese",
+    position176: "Flat-White",
+    position172: "Sea buckhorn tea (teapot 500 ml)",
+    position156: "Buckwheat tea (teapot 250 ml)",
+    position160: "Loose-leaf tea: black (teapot 250 ml)",
+    position171: "Loose-leaf tea: green (teapot 250 ml)",
   },
 };
 

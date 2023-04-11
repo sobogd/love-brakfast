@@ -111,6 +111,11 @@ const i18nRu = {
     position137: "Avokado (Saf)",
     position138: "Hafif tuzlu somon",
     position139: "Krem peynir",
+    position176: "Flat-White",
+    position172: "Deniz iğdesi çayı (250 ml)",
+    position156: "Karabuğday çayı (250 ml)",
+    position160: "Siyah çay (250 ml)",
+    position171: "Yeşil çay (250 ml)",
   },
 };
 

@@ -20,9 +20,7 @@ const Positions: React.FC = () => {
   const isMenuOpened = useSelector(isMenuOpenedSelector);
   const { i18n, t } = useTranslation();
   const { language } = i18n;
-  const state = useSelector((s) => s);
-  const menu = useAppSelector((s) => s.menu);
-  console.log("AAA", menu);
+  const categories = useAppSelector((s) => s.menu);
 
   React.useEffect(() => {
     dispatch(menuSearch());
@@ -32,31 +30,31 @@ const Positions: React.FC = () => {
     dispatch(closeMenus());
   }, [location, language]);
 
-  return (
-    !!menu.length &&
-    menu.map((m: any) => (
-      <Block>
-        <Title>
-          {t(`categories.category${m.id}`)}
-          <img src="/title.svg" alt="Контакты" />
-        </Title>
-        <TextBlock>
-          <ul>
-            {!!m.positions.length &&
-              m.positions.map((p: any) => {
-                return Number(p.price) ? (
-                  <li>
-                    {t(`positions.position${p.id}`)}
-                    {!!p.description && <text>{p.description}</text>}
-                    <strong>{p.price} TL</strong>
-                  </li>
-                ) : null;
-              })}
-          </ul>
-        </TextBlock>
-      </Block>
-    ))
-  );
+  return (<>
+        {!!categories.length &&
+            categories.map((m: any) => (
+                <Block>
+                  <Title>
+                    {t(`categories.category${m.id}`)}
+                    <img src="/title.svg" alt="Menu"/>
+                  </Title>
+                  <TextBlock>
+                    <ul>
+                      {!!m.positions.length &&
+                          m.positions.map((p: any) =>
+                              (
+                                  <li>
+                                    {t(`positions.position${p.id}`)}
+                                    {!!p.description && <text>{p.description}</text>}
+                                    <strong>{p.price} TL</strong>
+                                  </li>
+                              )
+                          )}
+                    </ul>
+                  </TextBlock>
+                </Block>
+            ))}
+    </>);
 };
 
 export default Positions;
