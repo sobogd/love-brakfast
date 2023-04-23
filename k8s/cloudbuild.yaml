@@ -54,17 +54,17 @@ images:
 options:
   substitutionOption: ALLOW_LOOSE
 substitutions:
-  _K8S_YAML_PATH: k8s/
-  _OUTPUT_BUCKET_PATH: fourth-scheme-383609_cloudbuild/deploy
-  _K8S_APP_NAME: love-breakfast
-  _K8S_NAMESPACE: default
-  _IMAGE_NAME: gcr.io/fourth-scheme-383609/github.com/sobogd/love-brakfast
-  _DOCKERFILE_NAME: Dockerfile
-  _GKE_LOCATION: us-central1
-  _K8S_ANNOTATIONS: gcb-trigger-id=e811df9d-8c45-4f9d-a9b2-d43f459b4c0a
-  _DOCKERFILE_DIR: ''
   _GKE_CLUSTER: rests
+  _K8S_ANNOTATIONS: gcb-trigger-id=f7c53418-5062-438d-993a-338589d989ce
+  _DOCKERFILE_DIR: ''
+  _K8S_YAML_PATH: k8s/
+  _GKE_LOCATION: us-central1
+  _DOCKERFILE_NAME: Dockerfile
   _K8S_LABELS: ''
+  _K8S_APP_NAME: love-breakfast
+  _IMAGE_NAME: gcr.io/fourth-scheme-383609/github.com/sobogd/love-brakfast
+  _OUTPUT_BUCKET_PATH: fourth-scheme-383609_cloudbuild/deploy
+  _K8S_NAMESPACE: default
 tags:
   - gcp-cloud-build-deploy
   - $_K8S_APP_NAME
