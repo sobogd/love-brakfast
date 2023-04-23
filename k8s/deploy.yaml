@@ -10,13 +10,20 @@ metadata:
     - apiVersion: apps/v1
       fieldsType: FieldsV1
       fieldsV1:
+        'f:spec':
+          'f:replicas': {}
+      manager: vpa-recommender
+      operation: Update
+      subresource: scale
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
         'f:metadata':
           'f:labels':
             .: {}
             'f:app': {}
         'f:spec':
           'f:progressDeadlineSeconds': {}
-          'f:replicas': {}
           'f:revisionHistoryLimit': {}
           'f:selector': {}
           'f:strategy':
@@ -55,6 +62,7 @@ metadata:
           'f:annotations':
             'f:deployment.kubernetes.io/revision': {}
         'f:status':
+          'f:availableReplicas': {}
           'f:conditions':
             .: {}
             'k:{"type":"Available"}':
@@ -74,17 +82,17 @@ metadata:
               'f:status': {}
               'f:type': {}
           'f:observedGeneration': {}
+          'f:readyReplicas': {}
           'f:replicas': {}
-          'f:unavailableReplicas': {}
           'f:updatedReplicas': {}
       manager: kube-controller-manager
       operation: Update
       subresource: status
-      time: '2023-04-23T19:01:56Z'
+      time: '2023-04-23T19:04:11Z'
   name: love-breakfast
   namespace: default
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: love-breakfast
@@ -178,10 +186,11 @@ metadata:
           'f:currentMetrics': {}
           'f:currentReplicas': {}
           'f:desiredReplicas': {}
+          'f:lastScaleTime': {}
       manager: vpa-recommender
       operation: Update
       subresource: status
-      time: '2023-04-23T19:02:13Z'
+      time: '2023-04-23T19:07:13Z'
   name: love-breakfast-hpa-ujfy
   namespace: default
 spec:
