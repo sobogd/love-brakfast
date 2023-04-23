@@ -1,17 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { ELangs, EMenuTypes } from "../enums";
-import Header from "./Header";
-import Menu from "./Menu";
-import { GENERAL_MENU_ITEMS, LANG_MENU_ITEMS } from "../consts";
-import { useLocation } from "react-router-dom";
-import { closeMenus } from "../redux/slice";
-import { isMenuOpenedSelector } from "../redux/selectors";
-import { Block, TextBlock, TextLink, Title } from "../styles";
-import { menuSearch } from "../api";
-import { useAppDispatch, useAppSelector } from "../redux/store";
 
 const Slider = styled.div`
   float: left;
@@ -43,7 +32,6 @@ const Slider = styled.div`
         right: 0;
         margin: auto;
         color: #e9e9e9;
-        width: calc(100% - 120px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -91,13 +79,8 @@ const Control = styled.span<{ side: string }>`
 `;
 
 const Home: React.FC = () => {
-  const location = useLocation();
-  const dispatch = useAppDispatch();
-  const isMenuOpened = useSelector(isMenuOpenedSelector);
   const { i18n, t } = useTranslation();
   const { language } = i18n;
-  const state = useSelector((s) => s);
-  const menu = useAppSelector((s) => s.menu);
   const [width, setWidth] = React.useState(0);
   const [leftPosition, setLeftPosition] = React.useState(0);
 
@@ -114,32 +97,32 @@ const Home: React.FC = () => {
   const slides = React.useMemo(() => {
     return [
       {
-        src: "/slider/slider3.png",
+        src: "/slider/slider3.jpg",
         title: t("slider.slider1"),
         description: "",
       },
       {
-        src: "/slider/slider9.png",
+        src: "/slider/slider9.jpg",
         title: t("slider.slider9"),
         description: "",
       },
       {
-        src: "/slider/slider7.png",
+        src: "/slider/slider7.jpg",
         title: t("slider.slider7"),
         description: "",
       },
       {
-        src: "/slider/slider2.png",
+        src: "/slider/slider2.jpg",
         title: t("slider.slider2"),
         description: "",
       },
       {
-        src: "/slider/slider6.png",
+        src: "/slider/slider6.jpg",
         title: t("slider.slider6"),
         description: "",
       },
       {
-        src: "/slider/slider5.png",
+        src: "/slider/slider5.jpg",
         title: t("slider.slider5"),
         description: "",
       },

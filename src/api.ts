@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const backUrl = "http://54.79.43.64:4000/";
+const backUrl = "http://server.love-breakfast.com/";
 
 export const menuSearch = createAsyncThunk("menu/search", async () => {
   const response = await fetch(backUrl + "menu/%7BcompanyId%7D?companyId=3", {
