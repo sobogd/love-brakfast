@@ -17,7 +17,6 @@ const Contacts: React.FC = () => {
       <TextLink target="__blank" href="https://goo.gl/maps/kzmuRydMTmQfYjTQA">
         Google Maps
       </TextLink>
-      <TextLink href="whatsapp:contact=+905347908970">WhatsApp</TextLink>
       <TextLink href="mailto:lovebreakfast.cafe@gmail.com">lovebreakfast.cafe@gmail.com</TextLink>
       <TextLink href="tel:+905347908970">+90 (534) 790-89-70</TextLink>
     </Block>

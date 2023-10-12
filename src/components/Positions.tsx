@@ -1,17 +1,6 @@
-import React, { Fragment, useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { ELangs, EMenuTypes } from "../enums";
-import Header from "./Header";
-import Menu from "./Menu";
-import { GENERAL_MENU_ITEMS, LANG_MENU_ITEMS } from "../consts";
-import { useLocation, useNavigate } from "react-router-dom";
-import { closeMenus } from "../redux/slice";
-import { isMenuOpenedSelector } from "../redux/selectors";
-import { Block, TextBlock, TextLink, Title } from "../styles";
-import { menuSearch } from "../api";
-import { useAppDispatch, useAppSelector } from "../redux/store";
 
 const Container = styled.div`
   width: 100%;
@@ -46,20 +35,10 @@ const MenuTab = styled.span`
   transition: 0.3s;
 `;
 
-const PositionsTitle = styled.div`
-  display: flex;
-  font-size: 22px;
-  margin-bottom: 30px;
-`;
-
 const PositionsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 20px 15px;
+  overflow-y: scroll;
   width: 100%;
-  margin: 30px 0;
-  padding: 0 15px;
 `;
 
 const PositionCard = styled.div`
@@ -113,7 +92,7 @@ const PositionPrice = styled.div`
 `;
 
 const Positions: React.FC = () => {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
   // const location = useLocation();
   // const dispatch = useAppDispatch();
   // const isMenuOpened = useSelector(isMenuOpenedSelector);
@@ -271,50 +250,97 @@ const Positions: React.FC = () => {
     ));
   };
 
+  const [touchStart, setTouchStart] = React.useState(0);
+  const [touchEnd, setTouchEnd] = React.useState(0);
+
+  function handleTouchStart(e: any) {
+    setTouchStart(e.targetTouches[0].clientX);
+  }
+
+  function handleTouchMove(e: any) {
+    setTouchEnd(e.targetTouches[0].clientX);
+  }
+
+  function handleTouchEnd() {
+    if (touchStart - touchEnd > 150) {
+      if (categoryId && categoryId < 10) {
+        setCategoryId(categoryId + 1);
+        document.getElementById("tabsForPositions")?.scrollTo({
+          left:
+            (document.getElementById("tabForCategory" + (categoryId + 1).toString())?.offsetLeft ?? 0) - 80,
+        });
+      }
+    }
+
+    if (touchStart - touchEnd < -150) {
+      if (categoryId && categoryId > 1) {
+        setCategoryId(categoryId - 1);
+        document.getElementById("tabsForPositions")?.scrollTo({
+          left:
+            (document.getElementById("tabForCategory" + (categoryId - 1).toString())?.offsetLeft ?? 0) - 80,
+        });
+      }
+    }
+  }
+
   return (
-    <Container>
-      <MenuTabs>
-        <MenuTabsScrollable>
-          {categories.map((c) => (
-            <MenuTab
-              onClick={handleClickCategory(c.number)}
-              style={
-                c.number === categoryId ? { background: "rgb(209 195 177 / 82%)", color: "white" } : undefined
-              }
-            >
-              {t(`menuCategories.name${c.number}`)}
-            </MenuTab>
-          ))}
-        </MenuTabsScrollable>
-      </MenuTabs>
-      <PositionsContainer>
-        {getCardsForArray(positions.filter((p) => p.category === categoryId))}
-      </PositionsContainer>
-      {/* {positions?.map((p) => <div>{p.name}</div>)} */}
-      {/*{!!categories.length &&*/}
-      {/*    categories.map((m: any) => (*/}
-      {/*        <Block>*/}
-      {/*          <Title>*/}
-      {/*            {t(`categories.category${m.id}`)}*/}
-      {/*            <img src="/title.svg" alt="Menu"/>*/}
-      {/*          </Title>*/}
-      {/*          <TextBlock>*/}
-      {/*            <ul>*/}
-      {/*              {!!m.positions.length &&*/}
-      {/*                  m.positions.map((p: any) =>*/}
-      {/*                      (*/}
-      {/*                          <li>*/}
-      {/*                            {t(`positions.position${p.id}`)}*/}
-      {/*                            {!!p.description && <text>{p.description}</text>}*/}
-      {/*                            <strong>{p.price} TL</strong>*/}
-      {/*                          </li>*/}
-      {/*                      )*/}
-      {/*                  )}*/}
-      {/*            </ul>*/}
-      {/*          </TextBlock>*/}
-      {/*        </Block>*/}
-      {/*    ))}*/}
-    </Container>
+    <div onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
+      <Container
+        style={{
+          overflow: "hidden",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <MenuTabs>
+          <MenuTabsScrollable id="tabsForPositions">
+            {categories.map((c) => (
+              <MenuTab
+                onClick={handleClickCategory(c.number)}
+                style={
+                  c.number === categoryId
+                    ? { background: "rgb(209 195 177 / 82%)", color: "white" }
+                    : undefined
+                }
+                id={`tabForCategory${c.number}`}
+              >
+                {t(`menuCategories.name${c.number}`)}
+              </MenuTab>
+            ))}
+          </MenuTabsScrollable>
+        </MenuTabs>
+        <PositionsContainer>
+          {getCardsForArray(positions.filter((p) => p.category === categoryId))}
+        </PositionsContainer>
+        {/* {positions?.map((p) => <div>{p.name}</div>)} */}
+        {/*{!!categories.length &&*/}
+        {/*    categories.map((m: any) => (*/}
+        {/*        <Block>*/}
+        {/*          <Title>*/}
+        {/*            {t(`categories.category${m.id}`)}*/}
+        {/*            <img src="/title.svg" alt="Menu"/>*/}
+        {/*          </Title>*/}
+        {/*          <TextBlock>*/}
+        {/*            <ul>*/}
+        {/*              {!!m.positions.length &&*/}
+        {/*                  m.positions.map((p: any) =>*/}
+        {/*                      (*/}
+        {/*                          <li>*/}
+        {/*                            {t(`positions.position${p.id}`)}*/}
+        {/*                            {!!p.description && <text>{p.description}</text>}*/}
+        {/*                            <strong>{p.price} TL</strong>*/}
+        {/*                          </li>*/}
+        {/*                      )*/}
+        {/*                  )}*/}
+        {/*            </ul>*/}
+        {/*          </TextBlock>*/}
+        {/*        </Block>*/}
+        {/*    ))}*/}
+      </Container>
+    </div>
   );
 };
 
