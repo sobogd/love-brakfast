@@ -137,6 +137,9 @@ const Positions: React.FC = () => {
 
   const handleClickCategory = (categoryId: number) => () => {
     setCategoryId(categoryId);
+    document.getElementById("tabsForPositions")?.scrollTo({
+      left: (document.getElementById("tabForCategory" + categoryId.toString())?.offsetLeft ?? 0) - 80,
+    });
   };
 
   const positions = [
@@ -284,7 +287,7 @@ const Positions: React.FC = () => {
   }
 
   return (
-    <div onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
+    <div>
       <Container
         style={{
           overflow: "hidden",
@@ -312,7 +315,11 @@ const Positions: React.FC = () => {
             ))}
           </MenuTabsScrollable>
         </MenuTabs>
-        <PositionsContainer>
+        <PositionsContainer
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           {getCardsForArray(positions.filter((p) => p.category === categoryId))}
         </PositionsContainer>
         {/* {positions?.map((p) => <div>{p.name}</div>)} */}
