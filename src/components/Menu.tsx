@@ -11,7 +11,9 @@ const Container = styled.div<{ isOpen: boolean }>`
   position: absolute;
   width: 100%;
   height: 100%;
-  transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1), opacity 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition:
+    all 1200ms cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
   opacity: ${(p) => (p.isOpen ? "1" : "0")};
   pointer-events: ${(p) => (p.isOpen ? "initial" : "none")};
   z-index: 15;
@@ -81,7 +83,9 @@ const Button = styled.button<{ isOpen: boolean }>`
   padding: 15px 0;
   text-transform: uppercase;
   transform: translateY(${(p) => (p.isOpen ? "0" : "85")}%);
-  transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1), opacity 200ms linear;
+  transition:
+    all 1200ms cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 200ms linear;
 `;
 
 const LinkStyled = styled.a<{ isOpen: boolean }>`
@@ -90,7 +94,9 @@ const LinkStyled = styled.a<{ isOpen: boolean }>`
   display: block;
   padding: 15px 0;
   transform: translateY(${(p) => (p.isOpen ? "0" : "85")}%);
-  transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1), opacity 200ms linear;
+  transition:
+    all 1200ms cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 200ms linear;
 `;
 
 interface IMenuItem {
@@ -123,7 +129,10 @@ const Menu: React.FC<IMenuProps> = ({ items, isOpen, type }) => {
         {items.map((item) => (
           <Element>
             {!!item.link && (
-              <LinkStyled isOpen={isOpen} onClick={() => dispatch(setPage(item.link))}>
+              <LinkStyled
+                isOpen={isOpen}
+                onClick={() => dispatch(setPage(item.link))}
+              >
                 {t(item.name)}
               </LinkStyled>
             )}

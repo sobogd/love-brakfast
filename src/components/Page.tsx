@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "@emotion/styled";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import Header from "./Header";
 import Menu from "./Menu";
 import { GENERAL_MENU_ITEMS, LANG_MENU_ITEMS } from "../consts";
 import { useLocation } from "react-router-dom";
-import { closeMenus } from "../redux/slice";
+import { closeMenus, setPage } from "../redux/slice";
 import { isMenuOpenedSelector } from "../redux/selectors";
 import Contacts from "./Contacts";
 import Positions from "./Positions";
@@ -52,7 +52,6 @@ const Scroll = styled.section`
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 40px;
 `;
 
 const ScrollContainer = styled.section`
@@ -107,11 +106,17 @@ const Page: React.FC = () => {
   const { language } = i18n;
   const state: any = useSelector((s) => s);
 
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {
+    if (location.search.includes("?menu")) {
+      i18n.changeLanguage("ru");
+      dispatch(setPage("menu"));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   React.useEffect(() => {
     dispatch(closeMenus());
-  }, [location, language]);
+  }, [location, language, dispatch, i18n]);
 
   const handleChangeLang = (lang: ELangs) => () => {
     i18n.changeLanguage(lang);
@@ -136,10 +141,14 @@ const Page: React.FC = () => {
             type={EMenuTypes.LANG}
           />
           <Scroll>
-            <Corner position={ECornerPosition.TOP_LEFT} src="/corner.svg" />
-            <Corner position={ECornerPosition.TOP_RIGHT} src="/corner.svg" />
-            <Corner position={ECornerPosition.BOTTOM_LEFT} src="/corner.svg" />
-            <Corner position={ECornerPosition.BOTTOM_RIGHT} src="/corner.svg" />
+            {state.page === "contacts" && (
+              <Fragment>
+                <Corner position={ECornerPosition.TOP_LEFT} src="/corner.svg" />
+                <Corner position={ECornerPosition.TOP_RIGHT} src="/corner.svg" />
+                <Corner position={ECornerPosition.BOTTOM_LEFT} src="/corner.svg" />
+                <Corner position={ECornerPosition.BOTTOM_RIGHT} src="/corner.svg" />
+              </Fragment>
+            )}
             <ScrollContainer>
               {state.page === "home" && <Home />}
               {state.page === "contacts" && <Contacts />}

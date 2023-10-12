@@ -6,14 +6,26 @@ export interface IState {
     [EMenuTypes.GENERAL]: boolean;
     [EMenuTypes.LANG]: boolean;
   };
-  menu: {
+  menu: IPublicMenuCategory[];
+  page: any;
+}
+
+export interface IPublicMenuItem {
+  id: number;
+  name: string;
+  price: number;
+  t: { code: string; title: string }[];
+  add: {
     id: number;
     name: string;
-    positions: {
-      id: number;
-      name: string;
-      price: string;
-    }[]
+    price: number;
+    t: { code: string; title: string }[];
   }[];
-  page: any;
+}
+
+export interface IPublicMenuCategory {
+  id: number;
+  name: string;
+  t: { code: string; title: string }[];
+  items: IPublicMenuItem[];
 }
