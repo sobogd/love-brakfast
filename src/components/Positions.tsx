@@ -39,6 +39,7 @@ const PositionsContainer = styled.div`
   padding: 20px 15px;
   overflow-y: scroll;
   width: 100%;
+  min-height: 100%;
 `;
 
 const PositionCard = styled.div`
@@ -265,7 +266,7 @@ const Positions: React.FC = () => {
   }
 
   function handleTouchEnd() {
-    if (touchStart - touchEnd > 150) {
+    if (touchStart - touchEnd > 80) {
       if (categoryId && categoryId < 10) {
         setCategoryId(categoryId + 1);
         document.getElementById("tabsForPositions")?.scrollTo({
@@ -275,7 +276,7 @@ const Positions: React.FC = () => {
       }
     }
 
-    if (touchStart - touchEnd < -150) {
+    if (touchStart - touchEnd < -80) {
       if (categoryId && categoryId > 1) {
         setCategoryId(categoryId - 1);
         document.getElementById("tabsForPositions")?.scrollTo({
