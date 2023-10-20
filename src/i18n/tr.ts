@@ -212,7 +212,11 @@ const i18nRu = {
     description109: "",
   },
   menuCategories: {
-    name1: "Bütün gün kahvaltı",
+    name1: "Syrniki",
+    name12: "Yumurtalar",
+    name13: "Krep",
+    name14: "Yulaf lapası",
+    name15: "Waffle",
     name2: "Tost",
     name3: "Çorbalar",
     name4: "Sandviçler",

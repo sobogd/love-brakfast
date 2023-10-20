@@ -359,7 +359,11 @@ const i18nEn = {
     description72: "",
   },
   menuCategories: {
-    name1: "Breakfast",
+    name1: "Syrniki",
+    name12: "Eggs",
+    name13: "Pancakes",
+    name14: "Porridges",
+    name15: "Waffles",
     name2: "Toasts",
     name3: "Soups",
     name4: "Sandwiches",

@@ -213,7 +213,11 @@ const i18nRu = {
     description109: "",
   },
   menuCategories: {
-    name1: "Завтраки весь день",
+    name1: "Сырники",
+    name12: "Яйца",
+    name13: "Блинчики",
+    name14: "Каши",
+    name15: "Вафли",
     name2: "Тосты",
     name3: "Супы",
     name4: "Сэндвичи",

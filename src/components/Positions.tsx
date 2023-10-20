@@ -20,7 +20,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   * {
-    transition: none;
+    transition: none !important;
+    ::before {
+      transition: none !important;
+    }
   }
 `;
 
@@ -96,6 +99,16 @@ const SwiperCardButton = styled.div`
   }
 `;
 
+const SwiperCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  margin: 20px 20px 0;
+  position: relative;
+`;
+
 const SwiperCardDescription = styled.div`
   font-size: 14px;
   padding: 0 20px 10px;
@@ -105,13 +118,6 @@ const SwiperCardDescription = styled.div`
   margin-top: -4px;
   line-height: 18px;
   white-space: pre-wrap;
-`;
-
-const SwiperCardSwipeDescription = styled.div`
-  font-size: 10px;
-  text-align: center;
-  margin: -2px 0 10px;
-  color: gray;
 `;
 
 const SwiperCardImage = styled.img``;
@@ -132,53 +138,31 @@ const Positions: React.FC = () => {
   };
 
   const getCardsForArray = (array: any) => {
-    return array.map((b: any) => (
-      <>
-        <Swiper
-          effect={"cards"}
-          grabCursor={true}
-          modules={[EffectCards]}
-          // cardsEffect={{ perSlideRotate: 10 }}
+    return array.map((a: any) => (
+      <SwiperCard
+        style={{
+          display: a.category === categoryId ? "flex" : "none",
+        }}
+      >
+        <SwiperCardImage src={a.img} />
+        <SwiperCardNumber
           style={{
-            width: "94%",
-            padding: "3%",
+            position: a.img !== "" ? "absolute" : "relative",
+            height: a.img !== "" ? "50px" : "auto",
+            marginTop: a.img !== "" ? "0px" : "8px",
+            color: a.img !== "" ? "black" : "gray",
+            fontSize: a.img !== "" ? "22px" : "15px",
           }}
         >
-          {b.map((a: any) => (
-            <SwiperSlide
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                background: "#ffffff",
-              }}
-            >
-              <SwiperCardImage src={a.img} />
-              <SwiperCardNumber
-                style={{
-                  position: a.img !== "" ? "absolute" : "relative",
-                  height: a.img !== "" ? "50px" : "auto",
-                  marginTop: a.img !== "" ? "0px" : "8px",
-                  color: a.img !== "" ? "black" : "gray",
-                  fontSize: a.img !== "" ? "22px" : "15px",
-                }}
-              >
-                {a.number}
-              </SwiperCardNumber>
-              <SwiperCardName>{t(`menuPositions.name${a.number}`)}</SwiperCardName>
-              {a.descr === true && (
-                <SwiperCardDescription>{t(`menuPositions.description${a.number}`)}</SwiperCardDescription>
-              )}
-              {/* <SwiperCardButton>Add to order</SwiperCardButton> */}
-              <SwiperCardPrice>{a.price} TL</SwiperCardPrice>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        {b.length > 1 && (
-          <SwiperCardSwipeDescription>Пролистайте, чтобы выбрать варианты блюда</SwiperCardSwipeDescription>
+          {a.number}
+        </SwiperCardNumber>
+        <SwiperCardName>{t(`menuPositions.name${a.number}`)}</SwiperCardName>
+        {a.descr === true && (
+          <SwiperCardDescription>{t(`menuPositions.description${a.number}`)}</SwiperCardDescription>
         )}
-      </>
+        {/* <SwiperCardButton>Add to order</SwiperCardButton> */}
+        <SwiperCardPrice>{a.price} TL</SwiperCardPrice>
+      </SwiperCard>
     ));
   };
 
@@ -211,9 +195,7 @@ const Positions: React.FC = () => {
             ))}
           </MenuTabsScrollable>
         </MenuTabs>
-        <PositionsContainer id="tabForPositions">
-          {getCardsForArray(positions.filter((p) => p?.[0].category === categoryId))}
-        </PositionsContainer>
+        <PositionsContainer id="tabForPositions">{getCardsForArray(positions)}</PositionsContainer>
       </Container>
     </div>
   );
