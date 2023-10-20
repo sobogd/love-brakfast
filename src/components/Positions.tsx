@@ -2,12 +2,6 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { useTranslation } from "react-i18next";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCards } from "swiper/modules";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-cards";
 import { categories, positions } from "../consts";
 
 const Container = styled.div`
@@ -160,6 +154,7 @@ const Positions: React.FC = () => {
         {a.descr === true && (
           <SwiperCardDescription>{t(`menuPositions.description${a.number}`)}</SwiperCardDescription>
         )}
+        {/* <SwiperCardButton>Add to order</SwiperCardButton> */}
         {/* <SwiperCardButton>Add to order</SwiperCardButton> */}
         <SwiperCardPrice>{a.price} TL</SwiperCardPrice>
       </SwiperCard>
