@@ -114,7 +114,9 @@ const SwiperCardDescription = styled.div`
   white-space: pre-wrap;
 `;
 
-const SwiperCardImage = styled.img``;
+const SwiperCardImage = styled.img`
+  width: 100%;
+`;
 
 const Positions: React.FC = () => {
   const { t } = useTranslation();
